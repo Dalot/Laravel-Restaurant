@@ -11,8 +11,5 @@ class Category extends Model
         'name', 'description', 'url_image', 'category_id', 'nest_depth'
     ];
      
-    public function foods()
-    {
-        return $this->hasMany(Food::class);
-    }
+    
 }

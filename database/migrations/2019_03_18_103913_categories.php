@@ -19,7 +19,7 @@ class Categories extends Migration
             
             $table->string('name');
             $table->text('description')->nullable();
-            $table->text('url_image')->nullable();
+            $table->string('url_image')->nullable();
             
             $table->timestamps();
         });
