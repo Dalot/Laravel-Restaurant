@@ -18,8 +18,12 @@ Route::middleware('auth:api')->group(function () {
      Route::resource('dish', 'FoodController');
 });
 
+Route::middleware('web')->group(function () {
+     Route::post('/login', 'UserController@login');
+     Route::post('/register', 'UserController@register');
+});
+
 Route::resource('dish', 'FoodController');
 
 
-Route::post('/login', 'UserController@login');
-Route::post('/register', 'UserController@register');
+

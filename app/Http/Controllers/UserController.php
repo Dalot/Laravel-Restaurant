@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserLoginRequest;
+
 use App\User;
 
 class UserController extends Controller
@@ -18,14 +21,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login(Request $request)
+    public function login(UserLoginRequest $request)
     {
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
+        
+        $validated = $request->validated();
  
-        if (auth()->attempt($credentials)) {
+        if (auth()->attempt($validated)) {
             $user = auth()->user();
             $token = $user->createToken('restaurant')->accessToken;
             Auth::login($user);
@@ -52,23 +53,19 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function register(Request $request)
+    public function register(UserStoreRequest $request, UserRepository $UserRepository)
     {
-        $this->validate($request, [
-            'name' => 'required|min:3',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
- 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
-        ]);
+        
+        $validated = $request->validated();
+        
+        $user = $UserRepository->createUser($validated);
  
         $token = $user->createToken('restaurant')->accessToken;
  
-        return response()->json(['token' => $token], 200);
+        return response()->json([
+            'user' => $user,
+            'token' => $token
+            ], 200);
     }
 
     /**
