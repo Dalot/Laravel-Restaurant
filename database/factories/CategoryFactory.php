@@ -1,13 +1,12 @@
 <?php
 
 use Faker\Generator as Faker;
-use Illuminate\Support\Str;
 
-$factory->define(App\Food::class, function (Faker $faker) {
+$factory->define(Model::class, function (Faker $faker) {
     return [
-        'title' => $faker->name,
+        'name' => $faker->name,
         'description' => Str::random(40),
         'url_image' => $faker->imageUrl($width = 200, $height = 200),
-        'category_id' => $faker->randomDigit,
+        'nest_depth' => numberBetween($min = 0, $max = 5),
     ];
 });

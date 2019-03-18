@@ -27,14 +27,16 @@ class UserController extends Controller
         $validated = $request->validated();
  
         if (auth()->attempt($validated)) {
+            
             $user = auth()->user();
             $token = $user->createToken('restaurant')->accessToken;
             Auth::login($user);
             
             return response()->json(['token' => $token], 200);
-        } else {
-            return response()->json(['error' => 'UnAuthorised'], 401);
-        }
+        } 
+        
+        return response()->json(['error' => 'UnAuthorised'], 401);
+        
     }
 
     /**
