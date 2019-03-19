@@ -18,8 +18,13 @@ class Menus extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price_person')->nullable();
+            $table->integer('category_id')->unsigned();
             $table->boolean('available')->default(true);
             $table->timestamps();
+        });
+        
+        Schema::table('menus', function($table) {
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
