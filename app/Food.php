@@ -15,4 +15,10 @@ class Food extends Model
     {
         return $this->hasMany(Category::class);
     }
+    
+    public function menu(){
+        return $this->belongsToMany(Menu::class)
+            ->withPivot('food_id','menu_id')
+            ->withTimestamps();
+    }
 }

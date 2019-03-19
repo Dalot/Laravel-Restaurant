@@ -15,7 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->BigIncrements('id');
-            $table->BigInteger('food_id')->unsigned();
+            $table->BigInteger('food_id')->unsigned()->nullable();
+            $table->BigInteger('menu_id')->unsigned()->nullable();
             $table->BigInteger('user_id')->unsigned();
             $table->unsignedInteger('quantity')->default(1);
             $table->string('status')->default("In Progress");
