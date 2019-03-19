@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Menus extends Migration
+class CreateFoodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,20 @@ class Menus extends Migration
      */
     public function up()
     {
-        Schema::create('menus', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('foods', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('name');
+            $table->integer('menu_id')->unsigned()->nullable();
+            $table->decimal('price');
             $table->text('description')->nullable();
-            $table->decimal('price_person')->nullable();
-            $table->BigInteger('food_id')->unsigned()->nullable();
-            $table->BigInteger('drink_id')->unsigned()->nullable();
+            $table->string('url_image');
             $table->integer('category_id')->unsigned();
-            $table->boolean('available')->default(true);
             $table->timestamps();
+            
         });
-        
-        Schema::table('menus', function($table) {
+
+        Schema::table('foods', function($table) {
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('food_id')->references('id')->on('foods')->onDelete('cascade');
-            $table->foreign('drink_id')->references('id')->on('drinks')->onDelete('cascade');
         });
     }
 
@@ -39,6 +37,6 @@ class Menus extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('foods');
     }
 }

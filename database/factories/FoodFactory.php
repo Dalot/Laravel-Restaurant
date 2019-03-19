@@ -1,10 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
-use Illuminate\Support\Str;
-use App\Menu;
 
-$factory->define(App\Product::class, function (Faker $faker) {
+$factory->define(App\Food::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'description' => Str::random(40),

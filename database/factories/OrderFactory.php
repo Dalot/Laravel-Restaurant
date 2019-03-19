@@ -5,8 +5,11 @@ use Faker\Generator as Faker;
 $factory->define(App\Order::class, function (Faker $faker) {
 
     return [
-        'product_id' => function () {
-                    return factory(App\Product::class)->create()->id;
+        'food_id' => function () {
+                    return factory(App\Food::class)->create()->id;
+                },
+        'drink_id' => function () {
+                    return factory(App\Drink::class)->create()->id;
                 },
         'menu_id' => function () {
                     return factory(App\Menu::class)->create()->id;

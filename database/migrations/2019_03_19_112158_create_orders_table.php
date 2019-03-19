@@ -15,7 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->BigIncrements('id');
-            $table->BigInteger('product_id')->unsigned()->nullable();
+            $table->BigInteger('food_id')->unsigned()->nullable();
+            $table->BigInteger('drink_id')->unsigned()->nullable();
             $table->integer('menu_id')->unsigned()->nullable();
             $table->BigInteger('user_id')->unsigned();
             $table->decimal('price')->unsigned();
@@ -30,7 +31,8 @@ class CreateOrdersTable extends Migration
         
         Schema::table('orders', function($table) {
            $table->foreign( 'user_id' )->references( 'id' )->on( 'users' )->onDelete( 'cascade' )->onUpdate( 'cascade' );
-           $table->foreign( 'product_id' )->references( 'id' )->on( 'products' );
+           $table->foreign( 'food_id' )->references( 'id' )->on( 'foods' );
+           $table->foreign( 'drink_id' )->references( 'id' )->on( 'drinks' );
            $table->foreign( 'menu_id' )->references( 'id' )->on( 'menus' );
        });
     }

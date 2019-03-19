@@ -7,11 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     protected $fillable = [
-        'name', 'description', 'price_person', 'available'
+        'name', 'description', 'food_id', 'drink_id', 'price_person', 'available'
         ];
         
-    public function products()
+    public function foods()
     {
-        return $this->belongsToMany(Product::class)->withPivot('product_id','menu_id')->withTimestamps();
+        return $this->belongsToMany(Food::class);
+    }
+    
+    public function drinks()
+    {
+        return $this->belongsToMany(Drink::class);
+    }
+    
+    public function orders()
+    {
+        return $this->morphToMany(Order::class);
     }
 }
