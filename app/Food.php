@@ -10,13 +10,12 @@ class Food extends Model
             'price', 'name', 'url_image', 'description'
         ];
     
-    public function menus()
-    {
-        return $this->belongsToMany(Menu::class);
-    }
     
-    public function orders()
-    {
-        return $this->morphToMany(Order::class);
+    /**
+     * Menu Relationship n-n
+     * @return ['data'=>[App\Models\Menu]]
+     */
+    public function menu(){
+        return $this->belongsToMany(Menu::class);
     }
 }

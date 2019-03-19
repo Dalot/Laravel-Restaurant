@@ -10,18 +10,25 @@ class Menu extends Model
         'name', 'description', 'food_id', 'drink_id', 'price_person', 'available'
         ];
         
-    public function foods()
-    {
+        
+        
+    /**
+     * Product Relationship n-n
+     * @return ['data'=>[App\Models\Product]]
+     */
+    public function food(){
         return $this->belongsToMany(Food::class);
     }
     
-    public function drinks()
-    {
+    
+    
+    /**
+     * Product Relationship n-n
+     * @return ['data'=>[App\Models\Product]]
+     */
+    public function drink(){
         return $this->belongsToMany(Drink::class);
     }
     
-    public function orders()
-    {
-        return $this->morphToMany(Order::class);
-    }
+    
 }

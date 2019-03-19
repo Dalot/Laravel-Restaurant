@@ -18,8 +18,8 @@ class Menus extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price_person')->nullable();
-            $table->BigInteger('food_id')->unsigned()->nullable();
-            $table->BigInteger('drink_id')->unsigned()->nullable();
+            $table->integer('food_id')->unsigned()->nullable();
+            $table->integer('drink_id')->unsigned()->nullable();
             $table->integer('category_id')->unsigned();
             $table->boolean('available')->default(true);
             $table->timestamps();

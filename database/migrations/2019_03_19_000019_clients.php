@@ -15,7 +15,7 @@ class Clients extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
-            $table->BigInteger('user_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             
             $table->string('phone_1', 15);
             $table->string('phone_2', 15);

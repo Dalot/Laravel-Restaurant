@@ -10,19 +10,9 @@ class Order extends Model
         'quantity', 'status', 'delay'
         ];
     
-    public function foods()
-    {
-        return $this->morphedByMany(Food::class, 'orders');
-    }
     
-    public function drinks()
-    {
-        return $this->morphedByMany(Drink::class, 'orders');
-    }
-    
-    public function menus()
-    {
-        return $this->morphedByMany(Menu::class, 'orders');
+    public function orderItem(){
+        return $this->hasMany(OrderItem::class);
     }
     
     public function user()
