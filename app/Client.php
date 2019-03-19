@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class School extends Model
+class Client extends Model
 {
-    public function clients()
+    public function school()
     {
-        return $this->hasMany(Client::class);
+        return $this->belongsTo(School::class);
     }
     
     public function students()

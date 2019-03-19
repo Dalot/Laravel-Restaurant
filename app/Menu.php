@@ -10,9 +10,8 @@ class Menu extends Model
         
         ];
         
-    public function food(){
-        return $this->belongsToMany(Food::class)
-            ->withPivot('food_id','menu_id')
-            ->withTimestamps();
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->withPivot('product_id','menu_id')->withTimestamps();
     }
 }

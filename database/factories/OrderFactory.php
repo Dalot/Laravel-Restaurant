@@ -4,12 +4,6 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Order::class, function (Faker $faker) {
 
-            $table->BigInteger('food_id')->unsigned()->nullable();
-            $table->BigInteger('menu_id')->unsigned()->nullable();
-            $table->BigInteger('user_id')->unsigned();
-            $table->unsignedInteger('quantity')->default(1);
-            $table->string('status')->default("In Progress");
-            $table->unsignedInteger('delay')->nullable(); 
     return [
         'food_id' => $faker->name,
         'menu_id' => function () {

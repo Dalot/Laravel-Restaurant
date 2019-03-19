@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     
-    public function foods()
+    public function products()
     {
-        return $this->hasMany(Food::class);
+        return $this->hasMany(Product::class);
+    }
+    
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
     }
     
     public function user()

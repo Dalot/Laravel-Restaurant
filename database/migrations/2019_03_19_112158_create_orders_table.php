@@ -15,9 +15,10 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->BigIncrements('id');
-            $table->BigInteger('food_id')->unsigned()->nullable();
-            $table->BigInteger('menu_id')->unsigned()->nullable();
+            $table->BigInteger('product_id')->unsigned()->nullable();
+            $table->integer('menu_id')->unsigned()->nullable();
             $table->BigInteger('user_id')->unsigned();
+            $table->decimal('price')->unsigned();
             $table->unsignedInteger('quantity')->default(1);
             $table->string('status')->default("In Progress");
             $table->unsignedInteger('delay')->nullable(); 
@@ -28,12 +29,9 @@ class CreateOrdersTable extends Migration
 
         
         Schema::table('orders', function($table) {
-           $table->foreign( 'user_id' )
-            ->references( 'id' )->on( 'users' )
-            ->onDelete( 'cascade' )
-            ->onUpdate( 'cascade' );
-           $table->foreign( 'food_id' )
-            ->references( 'id' )->on( 'foods' );
+           $table->foreign( 'user_id' )->references( 'id' )->on( 'users' )->onDelete( 'cascade' )->onUpdate( 'cascade' );
+           $table->foreign( 'product_id' )->references( 'id' )->on( 'products' );
+           $table->foreign( 'menu_id' )->references( 'id' )->on( 'menus' );
        });
     }
 
