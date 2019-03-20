@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Drink extends Model
 {
+    
+    use Orderable;
+    
      protected $fillable = [
             'price', 'name', 'url_image', 'description', 'drink_id'
         ];
@@ -19,4 +22,6 @@ class Drink extends Model
     public function menu(){
         return $this->belongsToMany(Menu::class);
     }
+    
+
 }

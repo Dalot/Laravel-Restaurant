@@ -11,7 +11,7 @@ $factory->define(App\Order::class, function (Faker $faker) {
         'status' => $faker->randomElement($array = array ('In Progress','Done','Canceled')),
         'delay' => $faker->numberBetween($min = 30, $max = 2880),
         'user_id' => function () {
-                    return App\User::inRandomOrder()->first()->id;
+                    return factory(App\User::class)->create()->id;
                 },
        
     ];

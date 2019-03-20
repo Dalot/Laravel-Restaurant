@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class Orderables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,18 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->increments('id');
-            $table->decimal('price')->unsigned();
+        Schema::create('orderables', function (Blueprint $table) {
+            $table->primary(['user_id', 'order_id', 'orderable_id', 'orderable_type']);
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('quantity')->default(1);
-            $table->string('status')->default("In Progress");
-            $table->unsignedInteger('delay')->nullable(); 
-            $table->timestamps();
-            $table->softDeletes();
-        });
+            $table->unsignedInteger('order_id');
+            $table->unsignedInteger('orderable_id');
 
+            $table->string('orderable_type');
+            
+            $table->timestamps();
+        });
+        
+        
     }
 
     /**
@@ -33,6 +34,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        //
     }
 }

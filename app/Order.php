@@ -6,17 +6,37 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+
+    
     protected $fillable = [
         'quantity', 'status', 'delay'
         ];
     
+  
     
-    public function orderItem(){
-        return $this->hasMany(OrderItem::class);
-    }
+  public function foods()
+  {
+      return $this->morphedByMany(Food::class, 'orderable')->withTimestamps();
+  }
+  
+  public function drinks()
+  {
+      return $this->morphedByMany(Drink::class, 'orderable')->withTimestamps();
+  }
+  
+  public function menus()
+  {
+      return $this->morphedByMany(Menu::class, 'orderable')->withTimestamps();
+  }
+  
+  public function user()
+  {
+      return $this->belongsTo(User::class);
+  }
+  
+
     
-    public function user()
-    {
-        $this->belongsTo(User::class);
-    }
+   
+    
+    
 }

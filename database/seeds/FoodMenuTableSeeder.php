@@ -19,7 +19,7 @@ class FoodMenuTableSeeder extends Seeder
             $b = rand(1,5);
             
             
-            if ( !array_search([$a,$b], $arr) ) {
+            if ( !array_search([$a,$b], $arr)  ) {
                 DB::table('food_menu')->insert([
                 'food_id' => $a,
                 'menu_id' => $b

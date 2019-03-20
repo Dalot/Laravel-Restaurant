@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MenusTableSeeder::class);
         $this->call(DrinkMenuTableSeeder::class);
         $this->call(FoodMenuTableSeeder::class);
-        $this->call(OrderItemsTableSeeder::class);
         $this->call(OrdersTableSeeder::class);
+        $this->call(OrderablesTableSeeder::class);
     }
 }
