@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->group(function () {
      Route::resource('/user', 'UserController')->except("login","register");
-     Route::resource('dish', 'FoodController');
+     Route::resource('food', 'FoodController');
 });
 
 Route::middleware('web')->group(function () {

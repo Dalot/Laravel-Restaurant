@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Contracts\UserRepositoryInterface;
 use App\User;
 
 /**
@@ -9,14 +10,20 @@ use App\User;
  * @package namespace App\Repositories;
  */
 
-class UserRepository
+class UserRepository implements UserRepositoryInterface
 {
-    public function createUser($user)
+    public function create($user)
     {
-        return User::create([
-                'name' => $user["name"],
-                'email' => $user["email"],
-                'password' => bcrypt($user["password"])
-            ]);
+        $user = User::create([
+                    'name' => $user["name"],
+                    'email' => $user["email"],
+                    'password' => bcrypt($user["password"]),
+                ]);
+        
+        return [
+            'user' => $user,
+            'token' => $user->createToken('restaurant')->accessToken
+            ];
+            
     }
 }

@@ -61,14 +61,9 @@ class UserController extends Controller
         
         $validated = $request->validated();
         
-        $user = $UserRepository->createUser($validated);
- 
-        $token = $user->createToken('restaurant')->accessToken;
- 
-        return response()->json([
-            'user' => $user,
-            'token' => $token
-            ], 200);
+        $userAndToken = $UserRepository->create($validated);
+        
+        return response()->json([$userAndToken], 200);
     }
 
     /**
