@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Contracts\RepositoryInterface;
+use App\User;
 
 /**
  * Interface UserRepository
@@ -14,9 +14,9 @@ class UserRepository
     public function createUser($user)
     {
         return User::create([
-                'name' => $validated["name"],
-                'email' => $validated["email"],
-                'password' => bcrypt($validated["password"])
+                'name' => $user["name"],
+                'email' => $user["email"],
+                'password' => bcrypt($user["password"])
             ]);
     }
 }

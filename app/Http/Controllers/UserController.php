@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserLoginRequest;
+use App\Repositories\UserRepository;
 
 use App\User;
 

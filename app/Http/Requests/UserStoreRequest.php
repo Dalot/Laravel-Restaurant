@@ -53,7 +53,7 @@ class UserStoreRequest extends FormRequest
      */
     protected function failedValidation(Validator $validator)
     {
-        $errors = (new ValidationException($validator, messages() ))->errors();
+        $errors = (new ValidationException($validator ))->errors();
         
         throw new HttpResponseException(response()->json([
             'errors' => $errors
