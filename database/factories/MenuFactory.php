@@ -11,5 +11,7 @@ $factory->define(App\Menu::class, function (Faker $faker) {
         'category_id' => function () {
             return factory(App\Category::class)->create()->id;
         }
+        
+        
     ];
 });
