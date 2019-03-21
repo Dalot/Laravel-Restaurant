@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::namespace('Admin')->group(function () {
-     Route::middleware('auth:api')->group(function () {
+     Route::middleware('auth:api','admin')->group(function () {
           Route::resource('/user', 'UserController')->except("login","register");
           Route::post('/admin/products', 'ProductController@store');
           Route::patch('/admin/products/{product}', 'ProductController@update');
