@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
-use App\Food;
+use App\Repositories\ProductRepository;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Food;
+use App\Drink;
+use App\Menu;
 
-class FoodController extends Controller
+class ProductController extends Controller
 {
     public function __construct()
     {
@@ -20,8 +24,14 @@ class FoodController extends Controller
     public function index()
     {
         $foods = Food::all();
+        $drinks = Drink::all();
+        $menus = Menu::all();
         
-        return response()->json($foods,200);
+        return response()->json( [
+            'foods' => $foods, 
+            'drinks' => $drinks, 
+            'menus' => $menus
+            ] ,200);
     }
 
     /**
@@ -31,7 +41,7 @@ class FoodController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -40,11 +50,7 @@ class FoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        
-    }
-
+    
     /**
      * Display the specified resource.
      *

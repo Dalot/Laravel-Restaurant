@@ -9,7 +9,7 @@ class Food extends Model
     use Orderable;
     
      protected $fillable = [
-            'price', 'name', 'url_image', 'description'
+            'price', 'name', 'url_image', 'description', 'category_id'
         ];
     
     

@@ -10,7 +10,7 @@ class Drink extends Model
     use Orderable;
     
      protected $fillable = [
-            'price', 'name', 'url_image', 'description', 'drink_id'
+            'price', 'name', 'url_image', 'description', 'category_id'
         ];
     
     

@@ -13,9 +13,28 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::namespace('Admin')->group(function () {
+     Route::middleware('auth:api')->group(function () {
+          Route::resource('/user', 'UserController')->except("login","register");
+          Route::post('/admin/products', 'ProductController@store');
+          Route::patch('/admin/products/{product}', 'ProductController@update');
+          Route::get('/admin/products', 'ProductController@index');
+          Route::get('/admin/food/products/{product}', 'ProductController@show');
+          Route::get('/admin/drink/products/{product}', 'ProductController@show');
+          Route::get('/admin/menu/products/{product}', 'ProductController@show');
+          
+     });
+});
+
+
+Route::namespace('Front')->group(function () {
+     Route::middleware('auth:api')->group(function () {
+          Route::resource('/products', 'ProductController')->except('store');
+     });
+});
+
 Route::middleware('auth:api')->group(function () {
      Route::resource('/user', 'UserController')->except("login","register");
-     Route::resource('food', 'FoodController');
 });
 
 Route::middleware('web')->group(function () {
@@ -23,7 +42,7 @@ Route::middleware('web')->group(function () {
      Route::post('/register', 'UserController@register');
 });
 
-Route::resource('dish', 'FoodController');
+
 
 
 
