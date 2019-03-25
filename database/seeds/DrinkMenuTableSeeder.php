@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
+use App\Helpers\PivotSeeder;
+
 
 class DrinkMenuTableSeeder extends Seeder
 {
@@ -12,24 +13,7 @@ class DrinkMenuTableSeeder extends Seeder
      */
     public function run()
     {
-        $arr = [];
-       
-        foreach(range(1, 10) as $index)
-        {
-            $a = rand(1,5);
-            $b = rand(1,5);
-            
-            
-            if ( !array_search([$a,$b], $arr) ) {
-                DB::table('drink_menu')->insert([
-                'drink_id' => $a,
-                'menu_id' => $b
-                ]);
-                
-                $arr[] = [$a,$b];
-            }
-            
-            
-        }
+       $PivotSeeder = new PivotSeeder;    
+       $PivotSeeder->seedPivotTable('drink_menu');
     }
 }

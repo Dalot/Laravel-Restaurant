@@ -13,6 +13,11 @@ class Client extends Model
     
     public function students()
     {
-        return $this->hasMany(Student::class);
+        return $this->belongsToMany(Student::class);
+    }
+    
+    public function user()
+    {
+        return $this->hasOne(User::class);
     }
 }

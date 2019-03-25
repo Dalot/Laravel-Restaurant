@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CreateCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,20 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->decimal('price')->unsigned();
+        Schema::create('carts', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('discount_percentage')->unsigned()->default(0);
-            $table->unsignedInteger('quantity')->default(1);
-            $table->string('status')->default("In Progress");
-            $table->unsignedInteger('delay')->nullable(); 
+            $table->decimal('total_price')->unsigned();
+            $table->boolean('is_active')->default(0);
+            $table->string('payment_method')->default('Stripe');
+            $table->integer('total_products')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
         
-        Schema::table('orders', function (Blueprint $table) {
+        Schema::table('carts', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
-
     }
 
     /**
@@ -38,6 +36,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('carts');
     }
 }

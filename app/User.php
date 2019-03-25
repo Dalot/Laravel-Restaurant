@@ -9,7 +9,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, Orderable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -44,10 +44,15 @@ class User extends Authenticatable
     }
     
 
-   
-   public function orders()
-   {
-       return $this->hasMany(Order::class);
-   }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
     
 }

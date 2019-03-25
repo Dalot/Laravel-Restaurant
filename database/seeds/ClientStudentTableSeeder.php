@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Helpers\PivotSeeder;
 
-class FoodMenuTableSeeder extends Seeder
+class ClientStudentTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,6 @@ class FoodMenuTableSeeder extends Seeder
     public function run()
     {
         $PivotSeeder = new PivotSeeder;    
-        $PivotSeeder->seedPivotTable('food_menu');
+        $PivotSeeder->seedPivotTable('client_student');
     }
 }

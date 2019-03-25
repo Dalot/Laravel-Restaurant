@@ -17,13 +17,12 @@ class Clients extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             
-            $table->string('phone_1', 15);
-            $table->string('phone_2', 15);
+            $table->string('phone_1', 30);
+            $table->string('phone_2', 30);
             
             $table->text('address');
             $table->integer('school_id')->unsigned();
             $table->string('zipcode');
-            $table->string('neighborhood');
             $table->string('city');
             $table->string('state');
             $table->string('country');

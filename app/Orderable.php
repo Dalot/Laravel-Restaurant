@@ -9,6 +9,5 @@ trait Orderable
         return $this->morphToMany(Order::class, 'orderable')->withTimestamps();
     }
     
-   
  
 }

@@ -18,6 +18,8 @@ class Schools extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('address');
+            $table->string('city');
+            $table->string('country');
             $table->string('avatar')->nullable();
             $table->string('website')->nullable();
             $table->string('facebook')->nullable();

@@ -16,16 +16,13 @@ class Students extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id')->onDelete('cascade');
             $table->integer('school_id')->unsigned();
-            $table->integer('client_id')->unsigned();
             $table->string('city');
             $table->string('country');
-            
             $table->timestamps();
             
         });
         
         Schema::table('students', function($table) {
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
         });
     }

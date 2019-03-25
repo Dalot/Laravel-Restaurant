@@ -17,7 +17,7 @@ class Menus extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price')->nullable();
+            $table->decimal('price_menu')->nullable();
             $table->integer('category_id')->unsigned();
             $table->boolean('available')->default(true);
             $table->timestamps();
