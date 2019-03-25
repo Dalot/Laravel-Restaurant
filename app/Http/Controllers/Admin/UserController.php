@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserLoginRequest;
+use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 
 use App\User;
@@ -20,7 +21,7 @@ class UserController extends Controller
     
     
     
-    public function users(Request $request)
+    public function index(Request $request)
     {
         $users = user::all();
         
@@ -36,30 +37,7 @@ class UserController extends Controller
      */
     public function login(UserLoginRequest $request)
     {
-        \Log::info('This is some useful information.');
-        $validated = $request->validated();
- 
-        if (auth()->attempt($validated)) {
-            
-            $user = auth()->user();
-            $token = $user->createToken('restaurant')->accessToken;
-            Auth::login($user);
-            
-            $role = "";
-            $role = 'User';
-            if($user->is_admin)
-            {
-                $role = 'Admin';
-            }
-            
-            
-            return response()->json([
-                'token' => $token,
-                'role' => $role
-                ], 200);
-        } 
         
-        return response()->json(['error' => 'UnAuthorised'], 401);
         
     }
 
@@ -82,11 +60,6 @@ class UserController extends Controller
     public function register(UserStoreRequest $request, UserRepository $UserRepository)
     {
         
-        $validated = $request->validated();
-        
-        $userAndToken = $UserRepository->create($validated);
-        
-        return response()->json([$userAndToken], 200);
     }
 
     /**
@@ -97,14 +70,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = Auth::user();
-        
-        if($user->id != $id) // Avoid strict equal because $id is a string
-        {
-            abort(403);
-        }
-        
-        return response()->json(['user' => $user], 200);
+      
     }
 
     /**

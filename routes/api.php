@@ -23,6 +23,8 @@ Route::namespace('Admin')->group(function () {
           Route::get('/admin/drink/products/{product}', 'ProductController@show');
           Route::get('/admin/menu/products/{product}', 'ProductController@show');
           
+          Route::post('/admin/users', 'UserController@index');
+          
      });
 });
 
@@ -37,7 +39,7 @@ Route::middleware('auth:api')->group(function () {
      Route::resource('/user', 'UserController')->except("login","register");
 });
 
-Route::middleware('web')->group(function () {
+Route::middleware(['web'])->group(function () {
      Route::post('/login', 'UserController@login');
      Route::post('/register', 'UserController@register');
 });

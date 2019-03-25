@@ -1,0 +1,22 @@
+server {
+         listen 80;
+         listen [::]:80;
+ 
+         # Log files for Debugging
+         access_log /var/log/nginx/lex-access.log;
+         error_log /var/log/nginx/lex-error.log;
+ 
+         # Webroot Directory for Laravel project
+         root /var/www/lex.dalot.xyz;
+         index index.php index.html index.htm;
+ 
+         # Your Domain Name
+         server_name lex.dalot.xyz;
+ 
+         location / {
+                 try_files $uri $uri/ /index.php?$query_string;
+	
+	 }
+ 
+         
+}

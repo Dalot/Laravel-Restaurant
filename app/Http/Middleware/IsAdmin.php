@@ -15,11 +15,11 @@ class IsAdmin
      * @return mixed
      */
     public function handle($request, Closure $next)
-{
-     if (Auth::user() &&  Auth::user()->is_admin == 1) {
+    {
+        if (Auth::user() &&  Auth::user()->is_admin == 1) {
             return $next($request);
-     }
-
-    return abort(403);
-}
+        }
+    
+        return abort(403);
+    }
 }
