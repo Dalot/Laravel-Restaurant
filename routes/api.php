@@ -24,7 +24,7 @@ Route::namespace('Admin')->group(function () {
           Route::get('/admin/menu/products/{product}', 'ProductController@show');
           
           Route::post('/admin/users', 'UserController@index');
-          
+          Route::delete('/admin/users/{user}', 'UserController@destroy');
      });
 });
 
@@ -36,6 +36,7 @@ Route::namespace('Front')->group(function () {
 });
 
 Route::middleware('auth:api')->group(function () {
+     Route::get('/logout', 'UserController@logout');
      Route::resource('/user', 'UserController')->except("login","register");
 });
 

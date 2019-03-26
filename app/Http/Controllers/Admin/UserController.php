@@ -35,11 +35,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login(UserLoginRequest $request)
-    {
-        
-        
-    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -57,11 +53,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function register(UserStoreRequest $request, UserRepository $UserRepository)
-    {
-        
-    }
-
+   
     /**
      * Display the specified resource.
      *
@@ -104,6 +96,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::where('id', $id)->get();
+        
+        User::where('id', $id)->delete();
+        
+        return response()->json([
+            "message" => "This user just got deleted", 
+            "user" => $user], 200);
     }
 }

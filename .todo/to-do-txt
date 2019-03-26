@@ -1,0 +1,20 @@
+-> USERS
+    
+    GUEST
+        LOGIN -> POST /api/login
+        REGISTER -> POST /api/register
+    
+    USER
+        SHOW SELF USER -> GET /api/user/{user}
+        EDIT SELF USER -> PATCH/PUT /api/user/{user}
+        LOGOUT -> GET /api/logout
+    ADMIN
+        LOGIN -> POST /api/login 
+        DELETE USER -> DELETE /api/admin/users/{user}
+        GET ALL USERS -> POST /api/admin/users
+        
+-> PRODUCTS        
+        
+    
+    
+    

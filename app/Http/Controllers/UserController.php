@@ -8,6 +8,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Repositories\UserRepository;
 
+
 use App\User;
 
 class UserController extends Controller
@@ -36,7 +37,7 @@ class UserController extends Controller
      */
     public function login(UserLoginRequest $request)
     {
-        \Log::info('This is some useful information.');
+
         $validated = $request->validated();
  
         if (auth()->attempt($validated)) {
@@ -61,6 +62,11 @@ class UserController extends Controller
         
         return response()->json(['error' => 'UnAuthorised'], 401);
         
+    }
+    
+    public function logout()
+    {
+        \Session::flush(); 
     }
 
     /**
@@ -115,7 +121,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -125,9 +131,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = Auth::user();
+        $id = $user->id;
+        $validatedData = $request->validate([
+            'name' => 'nullable|max:255',
+            'email' => 'nullable|email|unique:users',
+        ]);
+        
+        $user->fill($validatedData); // Update available fields in validated data and keep old data.
+          
+        return response()->json($user,200);
     }
 
     /**
