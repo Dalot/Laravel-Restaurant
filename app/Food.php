@@ -17,7 +17,7 @@ class Food extends Model
      * Menu Relationship n-n
      * @return ['data'=>[App\Models\Menu]]
      */
-    public function menu(){
+    public function menus(){
         return $this->belongsToMany(Menu::class);
     }
     

@@ -13,7 +13,7 @@ class OrderablesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        foreach(range(1, 5) as $index)
+        foreach(range(1, 50) as $index)
         {
          
             DB::table('orderables')->insert([

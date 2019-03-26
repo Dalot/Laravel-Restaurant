@@ -5,8 +5,8 @@
         REGISTER -> POST /api/register
     
     USER
-        SHOW SELF USER -> GET /api/user/{user}
-        EDIT SELF USER -> PATCH/PUT /api/user/{user}
+        SHOW USER INFO -> GET /api/user/{user}
+        EDIT USER INFO -> PATCH/PUT /api/user/{user}
         LOGOUT -> GET /api/logout
     ADMIN
         LOGIN -> POST /api/login 
@@ -15,6 +15,14 @@
         
 -> PRODUCTS        
         
-    
-    
-    
+    GUEST
+     ALL PRODUCTS PAGINATED BY 20 EACH PAGE -> GET /api/products
+     ALL FOODS PAGINATED BY 20 EACH PAGE -> GET api/products/foods
+     ALL DRINKS PAGINATED BY 20 EACH PAGE -> GET api/products/drinks
+     ALL MENUS PAGINATED BY 20 EACH PAGE -> GET api/products/menus
+     
+     
+-> ORDERS
+
+    USER
+        ALL ORDERS OF AUTHENTICATED USER -> GET /api/orders

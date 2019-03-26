@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers;
 
 use App\Repositories\ProductRepository;
 use App\Http\Controllers\Controller;
@@ -23,14 +23,43 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $foods = Food::all();
-        $drinks = Drink::all();
-        $menus = Menu::all();
+        $foods = Food::paginate(20);
+        $drinks = Drink::paginate(20);
+        $menus = Menu::paginate(20);
         
         return response()->json( [
             'foods' => $foods, 
             'drinks' => $drinks, 
             'menus' => $menus
+            ] ,200);
+    }
+    
+    
+    
+    public function foods()
+    {
+        $foods = Food::paginate(20);
+        
+        return response()->json( [
+            'foods' => $foods, 
+            ] ,200);
+    }
+    
+    public function drinks()
+    {
+        $foods = Food::paginate(20);
+        
+        return response()->json( [
+            'foods' => $foods, 
+            ] ,200);
+    }
+    
+    public function menus()
+    {
+        $foods = Food::paginate(20);
+        
+        return response()->json( [
+            'foods' => $foods, 
             ] ,200);
     }
 
@@ -50,25 +79,31 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+    public function store(Request $request, ProductRepository $ProductRepository)
+    {   
+        
+       
+    }
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Food  $food
+     * @param  \App\
      * @return \Illuminate\Http\Response
      */
-    public function show(Food $food)
+    public function show(Request $request, ProductRepository $ProductRepository, $id)
     {
-        //
+        
+       
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Food  $food
+     * @param  \App\
      * @return \Illuminate\Http\Response
      */
-    public function edit(Food $food)
+    public function edit()
     {
         //
     }
@@ -77,21 +112,21 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Food $food)
+    public function update(Request $request, ProductRepository $ProductRepository, $id)
     {
-        //
+        
+        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Food  $food
+     * @param  \App\
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Food $food)
+    public function destroy()
     {
         //
     }

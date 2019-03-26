@@ -23,16 +23,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $foods = Food::paginate(5);
-        $drinks = Drink::paginate(5);
-        $menus = Menu::paginate(5);
-        
-        return response()->json( [
-            'foods' => $foods, 
-            'drinks' => $drinks, 
-            'menus' => $menus
-            ] ,200);
+       
     }
+    
+    
+   
 
     /**
      * Show the form for creating a new resource.
