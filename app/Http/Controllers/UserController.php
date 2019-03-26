@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserLoginRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\UserRepository;
+use Illuminate\Http\Request;
 
 
 use App\User;
 
 class UserController extends Controller
 {
+    
     
     public function __construct()
     {
@@ -68,6 +70,8 @@ class UserController extends Controller
     {
         \Session::flush(); 
     }
+    
+    
 
     /**
      * Show the form for creating a new resource.

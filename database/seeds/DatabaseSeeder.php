@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         // Tables with dependencies
         $this->call(OrdersTableSeeder::class);
         $this->call(OrderablesTableSeeder::class);
-        $this->call(CartTableSeeder::class);
+        //$this->call(CartTableSeeder::class); -> replaced with Cart package from Crinsane for now
         
 
     }

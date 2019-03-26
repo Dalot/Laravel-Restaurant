@@ -29,7 +29,10 @@ class Order extends Model
       return $this->morphedByMany(Menu::class, 'orderable')->withTimestamps();
   }
   
-
+  public function user()
+  {
+      return $this->belongsTo(User::class);
+  }
   
 
 }

@@ -3,9 +3,16 @@
 namespace App\Helpers;
 
 use Illuminate\Database\Seeder;
+use App\Order;
 
 class PivotSeeder extends Seeder
 {
+    public function __construct()
+    {
+        
+    }
+    
+    
     private function is_array_unique(array $needle, array $haystack)
     {
         foreach($haystack as $arr)
@@ -42,6 +49,24 @@ class PivotSeeder extends Seeder
             
             
         }
+    }
+    
+    var $buffer = [];
+    
+    public function fetchUniqueId()
+    {
+        
+
+        $id = Order::inRandomOrder()->first()->id;
+        
+        if ( array_search($id,$this->buffer) )
+        {
+            return $this->fetchUniqueId();
+        }
+        
+        $this->buffer[] = $id;
+        return $id;
+        
     }
     
     

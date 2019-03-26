@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -13,7 +16,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Cart::content());
     }
 
     /**
@@ -34,7 +37,25 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        
+        $data = $request->all();
+        
+        $cartItem = Cart::add($data['id'], $data['name'], $data['quantity'], $data['price'], ['type' => $data['type']]);
+        
+        $does_it_exists = DB::table('carts')->where('identifier', '=', $user->id)->first();
+        
+        if ( !$does_it_exists )
+        {
+            Cart::store($user->id);
+        }
+        
+        
+        return response()->json([
+            'message' => 'Good job toxina, the following CartItem Instance was added',
+            'CartItem' => $cartItem,
+            'Cart Content' => Cart::content()
+            ] ,200);
     }
 
     /**

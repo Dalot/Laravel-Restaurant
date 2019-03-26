@@ -1,14 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\OrderStoreRequest;
-use App\Repositories\ProductRepository;
-use App\Repositories\OrderRepository;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\User;
-use App\Food;
+use App\Http\Controllers\Controller;
+use App\Order;
 
 class OrderController extends Controller
 {
@@ -19,11 +15,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $orders = Order::with('user')->get();
         
-        $orders = User::find($user->id)->orders;
-        
-        return response()->json($orders,200);
+        return response()->json($orders, 200);
     }
 
     /**
@@ -42,27 +36,9 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OrderStoreRequest $request, OrderRepository $OrderRepository)
+    public function store(Request $request)
     {
-        $user = Auth::user();
-        
-        $data = $request->validated();
-        
-   
-        if( $data["user_id"] != $user->id ) // Avoid literal non equal because id received might be a string
-        {
-            abort(403);
-        }
-        
-        $order = $OrderRepository->create($data);
-        
-        $associations = $OrderRepository->createProductAssociations($data, $order, $user->id);
-
-        return response()->json( [
-            'message' => "Order has been successfully placed as its respectives relationships",
-            'order' => $order
-            ] ,200);
-        
+        //
     }
 
     /**
