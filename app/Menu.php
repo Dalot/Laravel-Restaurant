@@ -10,7 +10,7 @@ class Menu extends Model
     use Orderable;
     
     protected $fillable = [
-        'name', 'description', 'food_id', 'drink_id', 'price_person', 'available'
+        'name', 'description', 'price_menu', 'available'
         ];
         
         

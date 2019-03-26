@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderStoreRequest;
+use App\Repositories\ProductRepository;
+use App\Repositories\OrderRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
+use App\Food;
 
 class OrderController extends Controller
 {
@@ -38,9 +42,27 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderStoreRequest $request, OrderRepository $OrderRepository)
     {
-        //
+        $user = Auth::user();
+        
+        $data = $request->validated();
+        
+   
+        if( $data["user_id"] != $user->id ) // Avoid literal non equal because id received might be a string
+        {
+            abort(403);
+        }
+        
+        $order = $OrderRepository->create($data);
+        
+        $associations = $OrderRepository->createProductAssociations($data, $order, $user->id);
+
+        return response()->json( [
+            'message' => "Order has been successfully placed as their respective relationships",
+            'order' => $order
+            ] ,200);
+        
     }
 
     /**

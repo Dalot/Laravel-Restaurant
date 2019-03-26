@@ -19,6 +19,7 @@ class CreateDrinksTable extends Migration
             $table->decimal('price_drink')->nullable();
             $table->text('description')->nullable();
             $table->string('url_image');
+            $table->string('type')->default("drink");
             $table->integer('category_id')->unsigned();
             $table->timestamps();
             
