@@ -4,11 +4,12 @@
         LOGIN -> POST /api/login
             -> form-data devera ter obrigatoriamente, 
                 - email
-                - pass
+                - password
         REGISTER -> POST /api/register
             -> form-data devera ter obrigatoriamente, 
                 - name
-                - pass
+                - password
+                - password_confirmation
                 - email
         FORGOT PASSWORD -> POST /api/forgot
             -> form-data
