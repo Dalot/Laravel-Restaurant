@@ -47,19 +47,19 @@ class ProductController extends Controller
     
     public function drinks()
     {
-        $foods = Food::paginate(20);
+        $foods = Drink::paginate(20);
         
         return response()->json( [
-            'foods' => $foods, 
+            'drinks' => $foods, 
             ] ,200);
     }
     
     public function menus()
     {
-        $foods = Food::paginate(20);
+        $foods = Menu::paginate(20);
         
         return response()->json( [
-            'foods' => $foods, 
+            'menus' => $foods, 
             ] ,200);
     }
 
