@@ -36,12 +36,13 @@
 -> PRODUCTS        
         
     GUEST
-     ALL PRODUCTS PAGINATED BY 20 EACH PAGE -> GET /api/products
+     ALL PRODUCTS PAGINATED BY AMOUNT EACH PAGE -> GET /api/products/{amount}
      ALL FOODS PAGINATED BY 20 EACH PAGE -> GET api/products/foods
      ALL DRINKS PAGINATED BY 20 EACH PAGE -> GET api/products/drinks
      ALL MENUS PAGINATED BY 20 EACH PAGE -> GET api/products/menus
-     
-     
+                                            GET api/food/products/{food}
+                                            GET api/drink/products/{drink}
+                                            GET api/menu/products/{menu}
 -> ORDERS
 
     USER

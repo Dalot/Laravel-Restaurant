@@ -21,11 +21,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($amount)
     {
-        $foods = Food::paginate(20);
-        $drinks = Drink::paginate(20);
-        $menus = Menu::paginate(20);
+        $amount = (int)$amount;
+        
+        $foods = Food::paginate($amount);
+        $drinks = Drink::paginate($amount);
+        $menus = Menu::paginate($amount);
         
         return response()->json( [
             'foods' => $foods, 
@@ -47,20 +49,38 @@ class ProductController extends Controller
     
     public function drinks()
     {
-        $foods = Drink::paginate(20);
+        $drinks = Drink::paginate(20);
         
         return response()->json( [
-            'drinks' => $foods, 
+            'drinks' => $drinks, 
             ] ,200);
     }
     
     public function menus()
     {
-        $foods = Menu::paginate(20);
+        $menus = Menu::paginate(20);
         
         return response()->json( [
-            'menus' => $foods, 
+            'menus' => $menus, 
             ] ,200);
+    }
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request, ProductRepository $ProductRepository, $id)
+    {
+        
+        $url = url()->current();
+        
+        $type = $ProductRepository->getProductTypeByUrl($url);
+        
+        $product = $ProductRepository->findProductById($id, $type);
+        
+        return response()->json($product, 200);
     }
 
     /**
@@ -85,17 +105,7 @@ class ProductController extends Controller
        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, ProductRepository $ProductRepository, $id)
-    {
-        
-       
-    }
+
 
     /**
      * Show the form for editing the specified resource.

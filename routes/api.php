@@ -54,10 +54,14 @@ Route::middleware(['web'])->group(function () {
      Route::post('/forgot', 'AuthController@forgot')->name('password.forgot');
      Route::post('/reset', 'AuthController@doReset')->name('password.reset');
      
-     Route::get('/products', 'ProductController@index');
+     Route::get('/products/{amount}', 'ProductController@index');
      Route::get('/products/foods', 'ProductController@foods');
      Route::get('/products/drinks', 'ProductController@drinks');
      Route::get('/products/menus', 'ProductController@menus');
+     
+     Route::get('/food/products/{product}', 'ProductController@show');
+     Route::get('/drink/products/{product}', 'ProductController@show');
+     Route::get('/menu/products/{product}', 'ProductController@show');
      
 
 });

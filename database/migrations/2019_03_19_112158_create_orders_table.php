@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id')->unsigned();
             $table->decimal('price')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('tax')->unsigned()->nullable();
             $table->integer('discount_percentage')->unsigned()->default(0);
             $table->unsignedInteger('quantity')->default(1);
             $table->string('status')->default("In Progress");

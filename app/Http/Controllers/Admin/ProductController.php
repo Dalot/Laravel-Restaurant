@@ -63,17 +63,7 @@ class ProductController extends Controller
      * @param  \App\
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, ProductRepository $ProductRepository, $id)
-    {
-        
-        $url = url()->current();
-        
-        $type = $ProductRepository->getProductTypeByUrl($url);
-        
-        $product = $ProductRepository->findProductById($id, $type);
-        
-        return response()->json($product, 200);
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
