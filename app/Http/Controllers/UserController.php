@@ -117,6 +117,30 @@ class UserController extends Controller
         
         return response()->json(['user' => $user], 200);
     }
+    
+    
+    /**
+     * Display the specified client .
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showClient($id)
+    {
+        $user = Auth::user();
+        
+        if($user->id != $id) // Avoid strict equal because $id is a string
+        {
+            abort(403);
+        }
+        
+        $client = User::where('id', $id)->first()->client;
+        
+        return response()->json([
+            'user' => $user,
+            'client' => $client
+        ], 200);
+    }
 
     /**
      * Show the form for editing the specified resource.

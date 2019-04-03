@@ -42,6 +42,7 @@ Route::middleware('auth:api')->group(function () {
      
      Route::get('/logout', 'UserController@logout');
      Route::resource('/user', 'UserController')->except("login","register");
+     Route::get('/user/client/{user}', 'UserController@showClient');
      Route::resource('/orders', 'OrderController')->except('');
 });
 

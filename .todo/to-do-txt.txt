@@ -1,0 +1,72 @@
+-> USERS
+    
+    GUEST
+        LOGIN -> POST /api/login
+            -> form-data devera ter obrigatoriamente, 
+                - email
+                - password
+        REGISTER -> POST /api/register
+            -> form-data devera ter obrigatoriamente, 
+                - name
+                - password
+                - password_confirmation
+                - email
+        FORGOT PASSWORD -> POST /api/forgot
+            -> form-data
+                - email
+        RESET PASSWORD -> POST /api/reset (receberas o token assim ".../api/reset/token=fernoguergeorguergpoerugergougen")
+            -form-data
+                - token
+                - email 
+                - password 
+                - password_confirmation
+    
+    USER
+        SHOW USER INFO -> GET /api/user/{user}
+        EDIT USER INFO -> PATCH/PUT /api/user/{user}
+            -> x-www-form-urlencoded
+                - name ou email
+                
+        LOGOUT -> GET /api/logout
+    ADMIN
+        LOGIN -> POST /api/login 
+        DELETE USER -> DELETE /api/admin/users/{user}
+        GET ALL USERS -> POST /api/admin/users
+        
+-> PRODUCTS        
+        
+    GUEST
+     ALL PRODUCTS PAGINATED BY AMOUNT EACH PAGE -> GET /api/products/{amount}
+     ALL FOODS PAGINATED BY 20 EACH PAGE -> GET api/products/foods
+     ALL DRINKS PAGINATED BY 20 EACH PAGE -> GET api/products/drinks
+     ALL MENUS PAGINATED BY 20 EACH PAGE -> GET api/products/menus
+                                            GET api/food/products/{food}
+                                            GET api/drink/products/{drink}
+                                            GET api/menu/products/{menu}
+-> ORDERS
+
+    USER
+        ALL ORDERS OF AUTHENTICATED USER -> GET /api/orders
+        STORE AN ORDER -> POST /api/orders
+            -> O json devera ser feito da seguinte forma:
+                {
+                    "price": "34.12", 
+                    "user_id": "5",
+                    "discount_percentage": "0",
+                    "quantity": "1",
+                    "status": "In Progress", // Opcional
+                    "delay": "234", // Opcional
+                    "products": {  // isto tem de ter, porque tem de ter algum abaixo
+                    	"foods": [3,5], //array com os ids dos produtos | opcional
+                    	"drinks": [1], //array com os ids dos produtos | opcional
+                    	"menus": [] //array com os ids dos produtos | opcional
+                    }
+                }
+    ADMIN
+        ALL ORDERS with USERS-> GET /api/admin/orders
+                
+-> CART
+    User
+        GET CART -> GET /api/cart
+        ADD CART ITEM -> POST /api/cart 
+        
