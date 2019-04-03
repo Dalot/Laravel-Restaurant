@@ -4,3 +4,4 @@
 <li><a href='{{ backpack_url('food') }}'><i class='fa fa-tag'></i> <span>Foods</span></a></li>
 <li><a href='{{ backpack_url('drink') }}'><i class='fa fa-tag'></i> <span>Drinks</span></a></li>
 <li><a href='{{ backpack_url('menu') }}'><i class='fa fa-tag'></i> <span>Menus</span></a></li>
+<li><a href='{{ backpack_url('category') }}'><i class='fa fa-tag'></i> <span>Categories</span></a></li>

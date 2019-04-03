@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-    use Orderable;
+    use Orderable, Categorizable;
     
      protected $fillable = [
             'price_food', 'name', 'url_image', 'description', 'category_id'
@@ -15,10 +15,18 @@ class Food extends Model
     
     /**
      * Menu Relationship n-n
-     * @return ['data'=>[App\Models\Menu]]
      */
     public function menus(){
         return $this->belongsToMany(Menu::class);
     }
+    
+    /**
+     * Category Relationship n-n
+     */
+    public function categories()
+    {
+        return $this->morphToMany('Category', 'categorizable');
+    }
+    
     
 }

@@ -34,7 +34,32 @@ class Menu extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    /**
+     * Product Relationship n-n
+     * @return ['data'=>[App\Models\Product]]
+     */
+    public function foods(){
+        return $this->belongsToMany(Food::class);
+    }
     
+    
+    
+    /**
+     * Product Relationship n-n
+     * @return ['data'=>[App\Models\Product]]
+     */
+    public function drinks(){
+        return $this->belongsToMany(Drink::class);
+    }
+    
+    
+    /**
+     * Category Relationship n-n
+     */
+    public function categories()
+    {
+        return $this->morphToMany('Category', 'categorizable');
+    }
 
     /*
     |--------------------------------------------------------------------------

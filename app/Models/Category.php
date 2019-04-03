@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Drink extends Model
+class Category extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Drink extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'drinks';
+    protected $table = 'categories';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['price_drink', 'name', 'url_image', 'description', 'category_id'];
+    protected $fillable = ['name', 'description', 'url_image', 'nest_depth'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,17 +34,32 @@ class Drink extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-     public function menus(){
-        return $this->belongsToMany(Menu::class);
+    /**
+     * Food Relationship n-n
+     */ 
+    public function foods()
+    {
+        return $this->morphedByMany(Food::class, 'categorizable');
     }
+
     
     
     /**
-     * Category Relationship n-n
-     */
-    public function categories()
+     * Drink Relationship n-n
+     */ 
+    public function drinks()
     {
-        return $this->morphToMany('Category', 'categorizable');
+        return $this->morphedByMany(Drink::class, 'categorizable');
+    }
+    
+    
+    
+    /**
+     * Menu Relationship n-n
+     */ 
+    public function menus()
+    {
+        return $this->morphedByMany(Menu::class, 'categorizable');
     }
 
     /*

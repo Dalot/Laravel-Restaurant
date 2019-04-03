@@ -20,14 +20,10 @@ class CreateDrinksTable extends Migration
             $table->text('description')->nullable();
             $table->string('url_image');
             $table->string('type')->default("drink");
-            $table->integer('category_id')->unsigned();
             $table->timestamps();
             
         });
 
-        Schema::table('drinks', function($table) {
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-        });
     }
 
     /**

@@ -14,4 +14,5 @@ Route::group([
     CRUD::resource('food', 'FoodCrudController');
     CRUD::resource('drink', 'DrinkCrudController');
     CRUD::resource('menu', 'MenuCrudController');
+    CRUD::resource('category', 'CategoryCrudController');
 }); // this should be the absolute last line of this file

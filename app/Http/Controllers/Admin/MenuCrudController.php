@@ -39,6 +39,23 @@ class MenuCrudController extends CrudController
         // add asterisk for fields that are required in MenuRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+        
+        $this->crud->addField([
+            'label' => "Drinks",
+            'type' => 'select2_multiple',
+            'name' => 'drinks', // the relationship name in your Model
+            'entity' => 'drinks', // the relationship name in your Model
+            'attribute' => 'name', // attribute on Menu that is shown to admin
+            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+        ]);
+        $this->crud->addField([
+            'label' => "Foods",
+            'type' => 'select2_multiple',
+            'name' => 'foods', // the relationship name in your Model
+            'entity' => 'foods', // the relationship name in your Model
+            'attribute' => 'name', // attribute on Menu that is shown to admin
+            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+        ]);
     }
 
     public function store(StoreRequest $request)

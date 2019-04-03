@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Categories extends Migration
+class Categorizables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class Categories extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->increments('id')->onDelete('cascade');
-            $table->integer('nest_depth')->unsigned()->default(0);
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('url_image')->nullable();
+         Schema::create('categorizables', function (Blueprint $table) {
+            $table->primary(['category_id', 'categorizable_id', 'categorizable_type']);
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('categorizable_id');
+            $table->string('categorizable_type');
             
             $table->timestamps();
         });

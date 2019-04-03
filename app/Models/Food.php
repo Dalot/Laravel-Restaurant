@@ -37,6 +37,14 @@ class Food extends Model
     public function menus(){
         return $this->belongsToMany(Menu::class);
     }
+    
+    /**
+     * Category Relationship n-n
+     */
+    public function categories()
+    {
+        return $this->morphToMany('Category', 'categorizable');
+    }
 
     /*
     |--------------------------------------------------------------------------

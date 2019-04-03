@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     
-    use Orderable;
+    use Orderable, Categorizable;
     
     protected $fillable = [
         'name', 'description', 'price_menu', 'available'
@@ -19,7 +19,7 @@ class Menu extends Model
      * Product Relationship n-n
      * @return ['data'=>[App\Models\Product]]
      */
-    public function food(){
+    public function foods(){
         return $this->belongsToMany(Food::class);
     }
     
@@ -29,11 +29,19 @@ class Menu extends Model
      * Product Relationship n-n
      * @return ['data'=>[App\Models\Product]]
      */
-    public function drink(){
+    public function drinks(){
         return $this->belongsToMany(Drink::class);
     }
     
     
+    /**
+     * Category Relationship n-n
+     * @return ['data'=>[App\Models\Menu]]
+     */
+    public function categories()
+    {
+        return $this->morphToMany('Category', 'categorizable');
+    }
     
     
     

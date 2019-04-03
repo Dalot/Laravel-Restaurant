@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use Illuminate\Database\Seeder;
 use App\Order;
+use App\Category;
 
 class PivotSeeder extends Seeder
 {
@@ -53,7 +54,7 @@ class PivotSeeder extends Seeder
     
     var $buffer = [];
     
-    public function fetchUniqueId()
+    public function fetchUniqueOrderId()
     {
         
 
@@ -61,7 +62,23 @@ class PivotSeeder extends Seeder
         
         if ( array_search($id,$this->buffer) )
         {
-            return $this->fetchUniqueId();
+            return $this->fetchUniqueOrderId();
+        }
+        
+        $this->buffer[] = $id;
+        return $id;
+        
+    }
+    
+     public function fetchUniqueCategoryId()
+    {
+        
+
+        $id = Category::inRandomOrder()->first()->id;
+        
+        if ( array_search($id,$this->buffer) )
+        {
+            return $this->fetchUniqueCategoryId();
         }
         
         $this->buffer[] = $id;

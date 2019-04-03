@@ -17,16 +17,11 @@ class Menus extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price_menu')->nullable();
-            $table->string('url_image');
+            $table->decimal('price_menu');
+            $table->string('url_image')->nullable();
             $table->string('type')->default("menu");
-            $table->integer('category_id')->unsigned();
             $table->boolean('available')->default(true);
             $table->timestamps();
-        });
-        
-        Schema::table('menus', function($table) {
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

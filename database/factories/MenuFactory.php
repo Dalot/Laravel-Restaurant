@@ -9,9 +9,6 @@ $factory->define(App\Menu::class, function (Faker $faker) {
         'url_image' => $faker->imageUrl($width = 600, $height = 600),
         'price_menu' => $faker->numberBetween($min = 0, $max = 30),
         'available' => $faker->boolean($chanceOfGettingTrue = 50),
-        'category_id' => function () {
-            return App\Category::inRandomOrder()->first()->id;
-        }
         
         
     ];

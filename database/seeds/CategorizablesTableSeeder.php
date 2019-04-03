@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 use App\Helpers\PivotSeeder;
 use Carbon\Carbon;
 
-class OrderablesTableSeeder extends Seeder
+class CategorizablesTableSeeder extends Seeder
 {
     public $buffer;
     /**
@@ -24,11 +24,10 @@ class OrderablesTableSeeder extends Seeder
         foreach(range(1, 50) as $index)
         {
             
-            DB::table('orderables')->insert([
-            'user_id' => App\User::inRandomOrder()->first()->id,
-            'order_id' => $PivotSeeder->fetchUniqueOrderId(),
-            'orderable_id' => rand(1,5),
-            'orderable_type' => $faker->randomElement($array = array ('App\Food','App\Menu','App\Drink')),
+            DB::table('categorizables')->insert([
+            'category_id' => $PivotSeeder->fetchUniqueCategoryId(),
+            'categorizable_id' => rand(1,5),
+            'categorizable_type' => $faker->randomElement($array = array ('App\Food','App\Menu','App\Drink')),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);
