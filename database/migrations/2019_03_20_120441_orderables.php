@@ -14,11 +14,9 @@ class Orderables extends Migration
     public function up()
     {
         Schema::create('orderables', function (Blueprint $table) {
-            $table->primary(['user_id', 'order_id', 'orderable_id', 'orderable_type']);
-            $table->unsignedInteger('user_id');
+            $table->primary(['order_id', 'orderable_id', 'orderable_type']);
             $table->unsignedInteger('order_id');
             $table->unsignedInteger('orderable_id');
-
             $table->string('orderable_type');
             
             $table->timestamps();

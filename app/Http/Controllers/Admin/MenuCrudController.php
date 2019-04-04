@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\MenuRequest as StoreRequest;
 use App\Http\Requests\MenuRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
+use App\Menu;
 
 /**
  * Class MenuCrudController
@@ -26,6 +27,8 @@ class MenuCrudController extends CrudController
         $this->crud->setModel('App\Models\Menu');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/menu');
         $this->crud->setEntityNameStrings('menu', 'menus');
+        $this->crud->enableDetailsRow();
+        $this->crud->allowAccess('details_row');
 
         /*
         |--------------------------------------------------------------------------
@@ -124,5 +127,25 @@ class MenuCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
+    }
+    
+    public function showDetailsRow($id)
+    {
+        $this->crud->hasAccessOrFail('details_row');
+
+        // $this->data['entry'] = $this->crud->getEntry($id);
+        // $this->data['crud'] = $this->crud;
+        $menu = Menu::find($id)->first();
+        
+        $drinks = $menu->drinks->map(function ($drink) {
+            return $drink->only(['name', 'price_drink']);
+        });
+        $foods = $menu->foods->map(function ($food) {
+            return $food->only(['name', 'price_food']);
+        });
+        $this->data = ['drinks' => $drinks, 'foods' => $foods];
+        
+        // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
+        return view('crud::details_row_menu', $this->data );
     }
 }

@@ -43,7 +43,12 @@ class Food extends Model
      */
     public function categories()
     {
-        return $this->morphToMany('Category', 'categorizable');
+        return $this->morphToMany(Category::class, 'categorizable');
+    }
+    
+    public function orders()
+    {
+        return $this->morphToMany(Order::class, 'orderable')->withTimestamps();
     }
 
     /*

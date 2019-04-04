@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Menu extends Model
+class Order extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Menu extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'menus';
+    protected $table = 'orders';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name', 'description', 'price_menu', 'available'];
+    protected $fillable = ['quantity', 'status', 'delay', 'price', 'user_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,32 +34,25 @@ class Menu extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    /**
-     * Product Relationship n-n
-     * @return ['data'=>[App\Models\Product]]
-     */
-    public function foods(){
-        return $this->belongsToMany(Food::class);
-    }
-    
-    
-    
-    /**
-     * Product Relationship n-n
-     * @return ['data'=>[App\Models\Product]]
-     */
-    public function drinks(){
-        return $this->belongsToMany(Drink::class);
-    }
-    
-    
-    /**
-     * Category Relationship n-n
-     */
-    public function categories()
-    {
-        return $this->morphToMany(Category::class, 'categorizable');
-    }
+      public function foods()
+      {
+          return $this->morphedByMany(Food::class, 'orderable')->withTimestamps();
+      }
+
+      public function drinks()
+      {
+          return $this->morphedByMany(Drink::class, 'orderable')->withTimestamps();
+      }
+      
+      public function menus()
+      {
+          return $this->morphedByMany(Menu::class, 'orderable')->withTimestamps();
+      }
+      
+      public function user()
+      {
+          return $this->belongsTo(User::class);
+      }
 
     /*
     |--------------------------------------------------------------------------

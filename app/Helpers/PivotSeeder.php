@@ -52,7 +52,8 @@ class PivotSeeder extends Seeder
         }
     }
     
-    var $buffer = [];
+    var $bufferOrder = [];
+    var $bufferCategory = [];
     
     public function fetchUniqueOrderId()
     {
@@ -60,12 +61,12 @@ class PivotSeeder extends Seeder
 
         $id = Order::inRandomOrder()->first()->id;
         
-        if ( array_search($id,$this->buffer) )
+        if ( array_search($id,$this->bufferOrder) )
         {
             return $this->fetchUniqueOrderId();
         }
         
-        $this->buffer[] = $id;
+        $this->bufferOrder[] = $id;
         return $id;
         
     }
@@ -76,12 +77,12 @@ class PivotSeeder extends Seeder
 
         $id = Category::inRandomOrder()->first()->id;
         
-        if ( array_search($id,$this->buffer) )
+        if ( array_search($id,$this->bufferCategory) )
         {
             return $this->fetchUniqueCategoryId();
         }
         
-        $this->buffer[] = $id;
+        $this->bufferCategory[] = $id;
         return $id;
         
     }

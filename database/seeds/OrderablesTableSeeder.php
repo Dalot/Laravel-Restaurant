@@ -25,10 +25,9 @@ class OrderablesTableSeeder extends Seeder
         {
             
             DB::table('orderables')->insert([
-            'user_id' => App\User::inRandomOrder()->first()->id,
             'order_id' => $PivotSeeder->fetchUniqueOrderId(),
             'orderable_id' => rand(1,5),
-            'orderable_type' => $faker->randomElement($array = array ('App\Food','App\Menu','App\Drink')),
+            'orderable_type' => $faker->randomElement($array = array ('App\Models\Food','App\Models\Menu','App\Models\Drink')),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);

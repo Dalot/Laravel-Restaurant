@@ -27,7 +27,7 @@ class CategorizablesTableSeeder extends Seeder
             DB::table('categorizables')->insert([
             'category_id' => $PivotSeeder->fetchUniqueCategoryId(),
             'categorizable_id' => rand(1,5),
-            'categorizable_type' => $faker->randomElement($array = array ('App\Food','App\Menu','App\Drink')),
+            'categorizable_type' => $faker->randomElement($array = array ('App\Models\Food','App\Models\Menu','App\Models\Drink')),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);
