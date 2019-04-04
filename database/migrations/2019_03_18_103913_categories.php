@@ -15,7 +15,10 @@ class Categories extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id')->onDelete('cascade');
-            $table->integer('nest_depth')->unsigned()->default(0);
+            $table->integer('depth')->default(0);
+            $table->integer('parent_id')->default(0)->nullable();
+            $table->integer('lft')->default(0);
+            $table->integer('rgt')->default(0);
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('url_image')->nullable();
