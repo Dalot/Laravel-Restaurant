@@ -19,7 +19,7 @@ class School extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['name', 'city', 'country'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -43,7 +43,14 @@ class School extends Model
     {
         return $this->hasMany(Student::class);
     }
-
+    
+    /**
+     * Category Relationship n-n
+     */
+    public function categories()
+    {
+        return $this->morphToMany(Category::class, 'categorizable');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

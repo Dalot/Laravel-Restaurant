@@ -50,6 +50,12 @@ class CategoryCrudController extends CrudController
             'label' => "Image",
             'type' => 'browse'
         ]);
+         $this->crud->addField([
+            'name' => 'time',
+            'label' => "Time of Eating",
+            'type' => 'enum',
+
+        ]);
         
         $this->crud->addField([
             'label' => "Drinks",
@@ -59,6 +65,7 @@ class CategoryCrudController extends CrudController
             'attribute' => 'name', // attribute on Menu that is shown to admin
             'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
         ]);
+        
         $this->crud->addField([
             'label' => "Foods",
             'type' => 'select2_multiple',
@@ -75,6 +82,14 @@ class CategoryCrudController extends CrudController
             'attribute' => 'name', // attribute on Menu that is shown to admin
             'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
         ]);
+        $this->crud->addField([
+            'label' => "Schools",
+            'type' => 'select2_multiple',
+            'name' => 'schools', // the relationship name in your Model
+            'entity' => 'schools', // the relationship name in your Model
+            'attribute' => 'name', // attribute on Menu that is shown to admin
+            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+        ]);
         
         
         $this->crud->addColumn([
@@ -83,6 +98,20 @@ class CategoryCrudController extends CrudController
             'type' => 'image',
             'prefix' => 'http://lex.dalot.xyz/restaurant/public/',
         ]);
+        $this->crud->addColumn([
+            'name' => 'time',
+            'label' => "Time of Eating",
+            'type' => 'text',
+        ]);
+        // n-n relationship (with pivot table)
+         $this->crud->addColumn([
+           'label' => "Schools", // Table column heading
+           'type' => "select_multiple",
+           'name' => 'schools', // the method that defines the relationship in your Model
+           'entity' => 'schools', // the method that defines the relationship in your Model
+           'attribute' => "name", // foreign key attribute that is shown to user
+           'model' => "App\Models\School", // foreign key model,
+          ]);
     }
 
     public function store(StoreRequest $request)

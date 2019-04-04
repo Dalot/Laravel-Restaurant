@@ -17,6 +17,7 @@ class Categories extends Migration
             $table->increments('id')->onDelete('cascade');
             $table->integer('depth')->default(0);
             $table->integer('parent_id')->default(0)->nullable();
+            $table->enum('time',['Recess', 'Lunch', 'Dinner'])->nullable();
             $table->integer('lft')->default(0);
             $table->integer('rgt')->default(0);
             $table->string('name');

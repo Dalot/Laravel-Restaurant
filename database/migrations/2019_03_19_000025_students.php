@@ -15,6 +15,7 @@ class Students extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id')->onDelete('cascade');
+            $table->string('name');
             $table->integer('school_id')->unsigned();
             $table->string('city');
             $table->string('country');

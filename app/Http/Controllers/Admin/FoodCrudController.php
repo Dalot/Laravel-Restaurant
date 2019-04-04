@@ -46,6 +46,7 @@ class FoodCrudController extends CrudController
             'type' => 'textarea',
 
         ]);
+       
         $this->crud->addField([
             'name' => 'price_food',
             'label' => "Individual Food Price",
@@ -85,6 +86,7 @@ class FoodCrudController extends CrudController
             'type' => 'number',
             'label' => 'Price Drink',
         ]);
+        
          $this->crud->addColumn([
             'name' => 'description',
             'type' => 'text',

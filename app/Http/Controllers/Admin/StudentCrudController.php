@@ -39,6 +39,28 @@ class StudentCrudController extends CrudController
         // add asterisk for fields that are required in StudentRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+        
+        
+        $this->crud->addField([
+            // Select
+           'label' => "School",
+           'type' => 'select',
+           'name' => 'school_id', // the db column for the foreign key
+           'entity' => 'school', // the method that defines the relationship in your Model
+           'attribute' => 'name', // foreign key attribute that is shown to user
+           'model' => "App\Models\School",
+        ]);
+        
+         $this->crud->addColumn([
+           // 1-n relationship
+           'label' => "School", // Table column heading
+           'type' => "select",
+           'name' => 'school_id', // the column that contains the ID of that connected entity;
+           'entity' => 'school', // the method that defines the relationship in your Model
+           'attribute' => "name", // foreign key attribute that is shown to user
+           'model' => "App\Models\School", // foreign key model
+          ]);
+       
     }
 
     public function store(StoreRequest $request)

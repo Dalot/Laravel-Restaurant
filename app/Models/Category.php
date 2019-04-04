@@ -19,7 +19,7 @@ class Category extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name', 'description', 'url_image', 'nest_depth'];
+    protected $fillable = ['name', 'description', 'url_image', 'time'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -60,6 +60,14 @@ class Category extends Model
     public function menus()
     {
         return $this->morphedByMany(Menu::class, 'categorizable');
+    }
+    
+    /**
+     * School Relationship n-n
+     */ 
+    public function schools()
+    {
+        return $this->morphedByMany(School::class, 'categorizable');
     }
 
     /*
