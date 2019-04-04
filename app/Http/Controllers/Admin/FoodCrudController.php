@@ -34,12 +34,36 @@ class FoodCrudController extends CrudController
         */
 
         // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->setFromDb();
+        // $this->crud->setFromDb();
 
         // add asterisk for fields that are required in FoodRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
         
+        $this->crud->addField([
+            'name' => 'name',
+            'label' => "Food Name",
+            'type' => 'textarea',
+
+        ]);
+        $this->crud->addField([
+            'name' => 'price_food',
+            'label' => "Individual Food Price",
+            'type' => 'number',
+            'attributes' => ["step" => "any"], // allow decimals
+
+        ]);
+        $this->crud->addField([
+            'name' => 'description',
+            'label' => "Description",
+            'type' => 'textarea',
+
+        ]);
+        $this->crud->addField([
+            'name' => 'url_image',
+            'label' => "Image",
+            'type' => 'browse'
+        ]);
         $this->crud->addField([
             'label' => "Menus",
             'type' => 'select2_multiple',
@@ -48,6 +72,32 @@ class FoodCrudController extends CrudController
             'attribute' => 'name', // attribute on Menu that is shown to admin
             'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
         ]);
+        
+        
+        // LIST ENTRIES
+        $this->crud->addColumn([
+            'name' => 'name',
+            'type' => 'text',
+            'label' => 'Food Name',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'price_drink',
+            'type' => 'number',
+            'label' => 'Price Drink',
+        ]);
+         $this->crud->addColumn([
+            'name' => 'description',
+            'type' => 'text',
+            'label' => 'Description',
+        ]);
+         $this->crud->addColumn([
+            'name' => 'url_image',
+            'label' => 'Image',
+            'type' => 'image',
+            'prefix' => 'http://lex.dalot.xyz/restaurant/public/',
+        ]);
+        
+        
     }
 
     public function store(StoreRequest $request)

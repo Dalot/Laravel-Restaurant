@@ -162,7 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
-
+        Barryvdh\Elfinder\ElfinderServiceProvider::class, // Remember to publish the assets after each update (or add the command to your post-update-cmd in composer.json)
         /*
          * Package Service Providers...
          */

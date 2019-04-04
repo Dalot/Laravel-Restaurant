@@ -27,7 +27,7 @@ class DrinkRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:255',
-            'price_food' => 'required|min:0.1|max:255',
+            'price_drink' => 'required|min:0.1|max:255',
         ];
     }
 

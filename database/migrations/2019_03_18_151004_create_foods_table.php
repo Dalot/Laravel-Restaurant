@@ -19,7 +19,7 @@ class CreateFoodsTable extends Migration
             $table->decimal('price_food');
             $table->text('description')->nullable();
             $table->string('type')->default("food");
-            $table->string('url_image');
+            $table->string('url_image')->nullable();
             $table->timestamps();
             
         });
