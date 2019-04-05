@@ -24,16 +24,11 @@ class ProductController extends Controller
     public function index($amount)
     {
         $amount = (int)$amount;
-        
         $foods = Food::paginate($amount);
         $drinks = Drink::paginate($amount);
         $menus = Menu::paginate($amount);
-        
-        return response()->json( [
-            'foods' => $foods, 
-            'drinks' => $drinks, 
-            'menus' => $menus
-            ] ,200);
+        $products = ['foods' => $foods, 'drinks' => $drinks, 'menus' => $menus];
+        return response()->json( ['products' => [$products]] ,200);
     }
     
     

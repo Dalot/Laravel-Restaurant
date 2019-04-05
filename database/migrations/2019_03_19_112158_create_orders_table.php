@@ -18,6 +18,8 @@ class CreateOrdersTable extends Migration
             $table->decimal('price')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('tax')->unsigned()->nullable();
+            $table->enum('payment_method',['Cash', 'Direct Deposit', 'Paypal'])->nullable();
+            $table->enum('payment_status',['Pending', 'Completed', 'Canceled'])->nullable();
             $table->integer('discount_percentage')->unsigned()->default(0);
             $table->unsignedInteger('quantity')->default(1);
             $table->string('status')->default("In Progress");

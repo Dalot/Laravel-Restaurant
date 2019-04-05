@@ -77,6 +77,15 @@ class OrderCrudController extends CrudController
            'attribute' => "name", // foreign key attribute that is shown to user
            'model' => "App\Models\Menu", // foreign key model,
           ]);
+           $this->crud->addColumn([
+           // 1-n relationship
+           'label' => "User", // Table column heading
+           'type' => "select",
+           'name' => 'user_id', // the column that contains the ID of that connected entity;
+           'entity' => 'user', // the method that defines the relationship in your Model
+           'attribute' => "name", // foreign key attribute that is shown to user
+           'model' => "App\Models\User", // foreign key model
+          ]);
     }
 
     public function store(StoreRequest $request)

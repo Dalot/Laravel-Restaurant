@@ -10,3 +10,4 @@
 <li><a href='{{ backpack_url('student') }}'><i class='fa fa-graduation-cap'></i> <span>Students</span></a></li>
 <li><a href='{{ backpack_url('school') }}'><i class='fa fa-university'></i> <span>Schools</span></a></li>
 <li><a href='{{ backpack_url('order') }}'><i class='fa fa-money'></i> <span>Orders</span></a></li>
+<li><a href='{{ backpack_url('user') }}'><i class='fa fa-user'></i> <span>Users</span></a></li>
