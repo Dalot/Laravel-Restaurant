@@ -19,6 +19,7 @@ class CreateDrinksTable extends Migration
             $table->decimal('price_drink')->nullable();
             $table->text('description')->nullable();
             $table->string('url_image')->nullable();
+            $table->enum('time', array('Recess', 'Lunch', 'Dinner'))->nullable();
             $table->string('type')->default("drink");
             $table->timestamps();
             

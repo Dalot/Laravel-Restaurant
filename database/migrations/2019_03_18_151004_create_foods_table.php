@@ -18,6 +18,7 @@ class CreateFoodsTable extends Migration
             $table->string('name');
             $table->decimal('price_food');
             $table->text('description')->nullable();
+            $table->enum('time', array('Recess', 'Lunch', 'Dinner'))->nullable();
             $table->string('type')->default("food");
             $table->string('url_image')->nullable();
             $table->timestamps();

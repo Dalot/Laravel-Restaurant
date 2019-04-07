@@ -20,6 +20,7 @@ class Menus extends Migration
             $table->decimal('price_menu');
             $table->string('url_image')->nullable();
             $table->string('type')->default("menu");
+            $table->enum('time', array('Recess', 'Lunch', 'Dinner'))->nullable();
             $table->boolean('available')->default(true);
             $table->timestamps();
         });

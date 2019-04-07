@@ -10,6 +10,6 @@ $factory->define(App\Menu::class, function (Faker $faker) {
         'price_menu' => $faker->numberBetween($min = 0, $max = 30),
         'available' => $faker->boolean($chanceOfGettingTrue = 50),
         
-        
-    ];
+        'time' => $faker->randomElement($array = array ('Recess','Lunch','Dinner', null))
+        ];
 });

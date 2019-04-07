@@ -14,7 +14,7 @@ class Categorizables extends Migration
     public function up()
     {
          Schema::create('categorizables', function (Blueprint $table) {
-            $table->primary(['category_id', 'categorizable_id', 'categorizable_type']);
+            $table->primary(['category_id', 'categorizable_id', 'categorizable_type'], 'categorizables_primary');
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('categorizable_id');
             $table->string('categorizable_type');
