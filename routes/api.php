@@ -38,17 +38,18 @@ Route::namespace('Admin')->group(function () {
      });
 });*/
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware(['auth:api','web'])->group(function () {
      
      Route::get('/logout', 'UserController@logout');
      Route::resource('/user', 'UserController')->except("login","register");
      Route::get('/user/client/{user}', 'UserController@showClient');
-     Route::resource('/orders', 'OrderController')->except('');
+     Route::resource('/orders', 'OrderController');
+     Route::resource('/cart', 'CartController');
 });
 
 Route::middleware(['web'])->group(function () {
      
-     Route::resource('/cart', 'CartController');
+    
      
      Route::post('/login', 'UserController@login');
      Route::post('/register', 'UserController@register');

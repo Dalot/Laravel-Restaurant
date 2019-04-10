@@ -21,6 +21,11 @@ class UserController extends Controller
         
     }
     
+    public function index()
+    {
+        return response()->json(request()->user());
+    }
+    
     
     
     public function users(Request $request)
@@ -59,7 +64,7 @@ class UserController extends Controller
             return response()->json([
                 'token' => $token,
                 'role' => $role,
-                'id' => $user->id
+                'user' => $user
                 ], 200);
         } 
         

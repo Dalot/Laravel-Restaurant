@@ -21,6 +21,7 @@ class CreateFoodsTable extends Migration
             $table->enum('time', array('Recess', 'Lunch', 'Dinner'))->nullable();
             $table->string('type')->default("food");
             $table->string('url_image')->nullable();
+            $table->boolean('available')->default(true);
             $table->timestamps();
             
         });

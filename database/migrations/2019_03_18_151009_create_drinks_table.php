@@ -21,6 +21,7 @@ class CreateDrinksTable extends Migration
             $table->string('url_image')->nullable();
             $table->enum('time', array('Recess', 'Lunch', 'Dinner'))->nullable();
             $table->string('type')->default("drink");
+            $table->boolean('available')->default(true);
             $table->timestamps();
             
         });

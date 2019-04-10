@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Food;
+use App\Drink;
+use App\Menu;
+use App\Cart;
+use Session;
 
 class CartController extends Controller
 {
@@ -16,7 +20,9 @@ class CartController extends Controller
      */
     public function index()
     {
-        return response()->json(Cart::content());
+        $cart =  Cart::content();
+
+        return response()->json( $cart, 200);
     }
 
     /**
@@ -37,26 +43,44 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+
         $user = Auth::user();
         
         $data = $request->all();
-        
-        $cartItem = Cart::add($data['id'], $data['name'], $data['quantity'], $data['price'], ['type' => $data['type']]);
-        
-        $does_it_exists = DB::table('carts')->where('identifier', '=', $user->id)->first();
-        
-        if ( !$does_it_exists )
-        {
-            Cart::store($user->id);
+        $type = $data['type'];
+        if( $type == 'food' ) {
+            
+            $product = Food::find($data['product_id']);
+            $product['price'] = (int) $product['price_food'];
         }
+        else if ($type == 'drink') {
+            $product = Drink::find($data['product_id']);
+            $product['price'] = (int) $product['price_drink'];
+        }
+        else {
+            $product = Menu::find($data['product_id']);
+            $product['price'] = (int) $product['price_menu'];
+        }
+            
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            
+            $cart = new Cart($oldCart);
+            
+            $cart->add($product, $product->id, $data['qty'], $type);
+            
+            $request->session()->put('cart', $cart); // Session a Store Instance (with an id) with Cart Instante which has Cart Items
+      
+            
+            return response()->json($cart,200);
+            
         
+       
+
+      
         
-        return response()->json([
-            'message' => 'Good job toxina, the following CartItem Instance was added',
-            'CartItem' => $cartItem,
-            'Cart Content' => Cart::content()
-            ] ,200);
+       
     }
+    
 
     /**
      * Display the specified resource.

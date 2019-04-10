@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 
-class Food extends Model
+class Food extends Model 
 {
     use Orderable, Categorizable;
     
@@ -29,4 +30,22 @@ class Food extends Model
     }
     
     
+    /**
+     * BUYABLE INTERFACE
+     */
+    public function getBuyableIdentifier($options = null){
+        return $this->id;
+    }
+
+    public function getBuyableDescription($options = null){
+        return $this->name;
+    }
+
+    public function getBuyablePrice($options = null){
+        return $this->price;
+    }
+    
+    public function getBuyableType($options = null){
+        return $this->type;
+    }
 }
