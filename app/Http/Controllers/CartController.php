@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\CartSession;
 use App\Food;
 use App\Drink;
 use App\Menu;
 use App\Cart;
+
 use Session;
+
 
 class CartController extends Controller
 {
@@ -20,8 +23,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart =  Cart::content();
-
+        $session =  Session::get('cart');
+        dd($session);
         return response()->json( $cart, 200);
     }
 
@@ -43,7 +46,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $user = Auth::user();
         
         $data = $request->all();
@@ -69,15 +72,11 @@ class CartController extends Controller
             $cart->add($product, $product->id, $data['qty'], $type);
             
             $request->session()->put('cart', $cart); // Session a Store Instance (with an id) with Cart Instante which has Cart Items
-      
+            
+            $cartArray = (array) $cart;
             
             return response()->json($cart,200);
             
-        
-       
-
-      
-        
        
     }
     
